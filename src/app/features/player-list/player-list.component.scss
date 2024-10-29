@@ -1,0 +1,25 @@
+.player-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pagination {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  gap: 20px;
+  justify-content: center; /* Centra los botones y el input */
+}
+
+button {
+  border: 1px solid lightblue;
+  padding: 5px;
+  font-size: 15px;
+}
+
+input {
+  width: 300px;
+  font-size: 15px;
+}

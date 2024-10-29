@@ -1,7 +1,21 @@
-<p>player-list works!</p>
-<div class="player-card">
-  <app-card-player
-    *ngFor="let player of playersData"
-    [player]="player"
-  ></app-card-player>
+<div class="container-player">
+  <div class="pagination">
+    <button (click)="backPage()" [disabled]="currentPage === 1">
+      Anterior
+    </button>
+    <input type="text" placeholder="Buscar" [(ngModel)]="searchQuery" />
+    <select [(ngModel)]="searchType">
+      <option value="name">Nombre</option>
+      <option value="club">Club</option>
+      <option value="position">Posición</option>
+    </select>
+    <button (click)="search()">Buscar</button>
+    <button (click)="nextPage()">Siguiente</button>
+  </div>
+  <div class="player-card">
+    <app-card-player
+      *ngFor="let player of playersData"
+      [player]="player"
+    ></app-card-player>
+  </div>
 </div>

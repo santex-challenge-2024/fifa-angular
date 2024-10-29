@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               horizontalPosition: 'right',
               verticalPosition: 'top',
             });
-            this.router.navigate(['/home']);
+            this.router.navigate(['/home/player-list']);
           } else {
             console.error(respuesta);
           }
