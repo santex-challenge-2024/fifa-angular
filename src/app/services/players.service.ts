@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environments } from '../environment/environment';
 import { Observable } from 'rxjs';
@@ -33,5 +33,34 @@ export class PlayersService {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     });
+  }
+
+  downloadCsv(pagination: Pagination): Observable<string> {
+    const page = pagination.page || 1;
+    const limit = pagination.limit || 10;
+
+    const params: any = { page, limit, format: 'csv' }; // Añadir el formato CSV
+
+    // Agregar criterios de búsqueda según los parámetros
+    if (pagination?.club) params.club = pagination.club;
+    if (pagination?.name) params.name = pagination.name;
+    if (pagination?.position) params.position = pagination.position;
+
+    // Construcción de cadena de consulta (query)
+    const queryString = new URLSearchParams(params).toString();
+
+    // Configura las opciones para la solicitud
+    const options = {
+      headers: new HttpHeaders({
+        Accept: 'text/csv',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      }),
+      responseType: 'text' as 'json', // Especificar que esperamos un texto
+    };
+
+    return this.http.get<string>(
+      `${this.baseUrl}/players?${queryString}`,
+      options
+    );
   }
 }

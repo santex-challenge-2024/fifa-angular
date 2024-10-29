@@ -19,6 +19,7 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   searchType: string = 'name';
   searchQuery: string = '';
   pagination: Pagination = {};
+  downloadCsvFile: string = '';
 
   constructor(private readonly playerService: PlayersService) {
     this.playerSubscribe = new Subscription();
@@ -38,6 +39,7 @@ export class PlayerListComponent implements OnInit, OnDestroy {
     const pagination: Pagination = {
       page: this.currentPage,
       limit: 10, // Ajusta el límite según tu necesidad
+      format: this.downloadCsvFile,
     };
 
     //si se ejecuta el buscar analiza los datos entrantes
@@ -77,5 +79,42 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   search() {
     this.currentPage = 1;
     this.loadPlayers();
+  }
+
+  //downloadCSV
+  downloadCsv() {
+    const pagination: Pagination = {
+      page: this.currentPage,
+      limit: 10, // Ajusta según tus necesidades
+      format: 'csv', // Agrega el formato CSV
+    };
+
+    // Agregar criterios de búsqueda
+    if (this.searchType === 'name') {
+      pagination.name = this.searchQuery;
+    } else if (this.searchType === 'club') {
+      pagination.club = this.searchQuery;
+    } else if (this.searchType === 'position') {
+      pagination.position = this.searchQuery;
+    }
+
+    this.playerSubscribe = this.playerService
+      .downloadCsv(pagination)
+      .subscribe((respuesta: any) => {
+        this.downloadFile(respuesta);
+      });
+  }
+
+  //metodo para descargar
+  downloadFile(data: string) {
+    const blob = new Blob([data], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'jugadores.csv'); // Nombre del archivo descargado
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link); // Limpiar
   }
 }
