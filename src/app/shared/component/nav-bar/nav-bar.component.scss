@@ -1,0 +1,28 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Añade un margen interior */
+  background-color: #f8f8f8;
+}
+
+/* Estilos para el título */
+nav p {
+  font-weight: bold;
+  color: rgb(51, 146, 177);
+}
+
+/* Estilos para el contenedor de la lista */
+ul {
+  display: flex;
+  list-style-type: none;
+  gap: 20px; /* Espacio entre los elementos */
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para los elementos de la lista */
+ul li {
+  cursor: pointer;
+  color: rgb(51, 146, 177);
+}

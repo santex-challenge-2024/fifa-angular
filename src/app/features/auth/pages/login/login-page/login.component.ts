@@ -9,11 +9,12 @@ import {
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../../../../services/auth.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, MatSnackBarModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private snackBar: MatSnackBar
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -43,7 +45,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   login() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-      console.log('Datos del formulario:');
       this.loginSubscribe = this.authService
         .login(email, password)
         .subscribe((respuesta: any) => {
@@ -53,7 +54,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             // Guardar el token en localStorage
             localStorage.setItem('token', respuesta.data.accessToken);
 
-            // Redireccionar después de una respuesta exitosa
+            //toast para mostrar registro exitoso
+            this.snackBar.open('Login exitoso', 'Cerrar', {
+              duration: 3000, // duración en milisegundos
+              horizontalPosition: 'right',
+              verticalPosition: 'top',
+            });
             this.router.navigate(['/home']);
           } else {
             console.error(respuesta);
