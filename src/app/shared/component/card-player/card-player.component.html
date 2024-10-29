@@ -1,0 +1,13 @@
+<div class="player-card">
+  <img [src]="player.player_face_url" alt="{{ player.long_name }}" />
+  <h3>{{ player.long_name }}</h3>
+  <p>Edad: {{ player.age }}</p>
+  <p>Club: {{ player.club_name }}</p>
+  <p>Posición: {{ player.player_positions }}</p>
+  <p>Overall: {{ player.overall }}</p>
+  <p>Potencial: {{ player.potential }}</p>
+  <p>Valor: €{{ player.value_eur.toLocaleString() }}</p>
+  <p>Pie Preferido: {{ player.preferred_foot }}</p>
+  <p>Movimiento - Aceleración: {{ player.movement_acceleration }}</p>
+  <p>Habilidades de Tiro - Finalización: {{ player.attacking_finishing }}</p>
+</div>

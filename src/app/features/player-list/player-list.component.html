@@ -1,1 +1,7 @@
 <p>player-list works!</p>
+<div class="player-card">
+  <app-card-player
+    *ngFor="let player of playersData"
+    [player]="player"
+  ></app-card-player>
+</div>

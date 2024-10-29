@@ -1,0 +1,16 @@
+/* player-card.component.css */
+.player-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  width: 200px; /* Ajusta el ancho según sea necesario */
+}
+
+.player-image {
+  width: 100%; /* Asegura que la imagen se ajuste al ancho de la tarjeta */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 8px; /* Bordes redondeados para la imagen */
+}
