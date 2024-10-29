@@ -23,6 +23,14 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
+  //validacion usuario logeado (uso en authGuard)
+  loggedIn() {
+    if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+      return true;
+    }
+    return false;
+  }
+
   register(registerUser: RegisterUser): Observable<any> {
     return this.http.post<any>(
       `${this.baseUrl}/auth/registerUser`,

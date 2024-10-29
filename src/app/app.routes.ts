@@ -4,6 +4,7 @@ import { RegisterComponent } from './features/auth/pages/register/register-page/
 import { HomeComponent } from './features/home/home.component';
 import { PlayerListComponent } from './features/player-list/player-list.component';
 import { PlayerCreateComponent } from './features/player-create/player-create.component';
+import { authGuard } from './features/auth/guard/auth.guard';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'player-list', component: PlayerListComponent },
       { path: 'player-create', component: PlayerCreateComponent },
