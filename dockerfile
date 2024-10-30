@@ -1,12 +1,14 @@
 
-FROM node:16
+FROM node:18
 
 
 WORKDIR /app
 
+RUN npm install -g @angular/cli
 
 COPY package*.json ./
 RUN npm install
+
 
 
 COPY . .
@@ -15,4 +17,4 @@ COPY . .
 EXPOSE 4200
 
 
-CMD ["npm", "run", "start"]
+CMD ["ng", "serve", "--host", "0.0.0.0"]
