@@ -4,6 +4,7 @@ import { environments } from '../environment/environment';
 import { Observable } from 'rxjs';
 import { Player } from '../models/player.model';
 import { Pagination } from '../models/pagination.model';
+import { CreatePlayer } from '../models/create-player.model';
 
 @Injectable({
   providedIn: 'root',
@@ -62,5 +63,13 @@ export class PlayersService {
       `${this.baseUrl}/players?${queryString}`,
       options
     );
+  }
+
+  createPlayer(player: CreatePlayer): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/players/create`, player, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
   }
 }

@@ -1,1 +1,168 @@
-<p>player-create works!</p>
+<div class="container">
+  <h2>Registrarse como jugador</h2>
+
+  <form
+    class="form-register"
+    [formGroup]="registerForm"
+    (ngSubmit)="register()"
+  >
+    <div class="input-items">
+      <label for="fifa_version">Fifa version</label>
+      <input id="fifa_version" type="number" formControlName="fifa_version" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('fifa_version')?.invalid &&
+          registerForm.get('fifa_version')?.touched
+        "
+      >
+        version de fifa es requerido.
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="fifa_update">Fifa update</label>
+      <input id="fifa_update" type="number" formControlName="fifa_update" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('fifa_update')?.invalid &&
+          registerForm.get('fifa_update')?.touched
+        "
+      >
+        Fifa update es requerido.
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="player_face_url">Url foto</label>
+      <input
+        id="player_face_url"
+        type="text"
+        formControlName="player_face_url"
+      />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('player_face_url')?.invalid &&
+          registerForm.get('player_face_url')?.touched
+        "
+      >
+        Url foto es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="long_name">Nombre completo</label>
+      <input id="long_name" type="text" formControlName="long_name" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('long_name')?.invalid &&
+          registerForm.get('long_name')?.touched
+        "
+      >
+        Nombre es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="player_positions">Posicion</label>
+      <input
+        id="player_positions"
+        type="text"
+        formControlName="player_positions"
+      />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('player_positions')?.invalid &&
+          registerForm.get('player_positions')?.touched
+        "
+      >
+        Posicion es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="club_name">Nombre del club</label>
+      <input id="club_name" type="text" formControlName="club_name" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('club_name')?.invalid &&
+          registerForm.get('club_name')?.touched
+        "
+      >
+        Nombre del club es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="nationality_name">Nacionalidad</label>
+      <input
+        id="nationality_name"
+        type="text"
+        formControlName="nationality_name"
+      />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('nationality_name')?.invalid &&
+          registerForm.get('nationality_name')?.touched
+        "
+      >
+        Nacionalidad es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="overall">general</label>
+      <input id="overall" type="number" formControlName="overall" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('overall')?.invalid &&
+          registerForm.get('overall')?.touched
+        "
+      >
+        general es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="potential">Potencial</label>
+      <input id="potential" type="number" formControlName="potential" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('potential')?.invalid &&
+          registerForm.get('potential')?.touched
+        "
+      >
+        Potencial es requerido
+      </div>
+    </div>
+
+    <div class="input-items">
+      <label for="age">Edad</label>
+      <input id="age" type="number" formControlName="age" />
+      <div
+        class="msg-danger"
+        *ngIf="
+          registerForm.get('age')?.invalid && registerForm.get('age')?.touched
+        "
+      >
+        Edad es requerido
+      </div>
+    </div>
+
+    <button
+      class="btn-register"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Registrar
+    </button>
+  </form>
+</div>
