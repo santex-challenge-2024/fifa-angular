@@ -1,4 +1,4 @@
-# Fifa Aplicaction
+# Fifa Aplication
 
 ## Funcionalidad
 
