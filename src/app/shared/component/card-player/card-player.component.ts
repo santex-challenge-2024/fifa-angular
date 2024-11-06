@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Player } from '../../../models/player.model';
 
 @Component({
@@ -10,4 +10,9 @@ import { Player } from '../../../models/player.model';
 })
 export class CardPlayerComponent {
   @Input() player: any;
+  @Output() playerSelected = new EventEmitter<any>();
+
+  selectPlayer() {
+    this.playerSelected.emit(this.player);
+  }
 }

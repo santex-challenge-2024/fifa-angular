@@ -17,6 +17,7 @@
     <app-card-player
       *ngFor="let player of playersData"
       [player]="player"
+      (playerSelected)="goToPlayerDetail($event)"
     ></app-card-player>
   </div>
 </div>

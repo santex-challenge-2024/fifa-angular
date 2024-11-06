@@ -1,10 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { CardPlayerComponent } from '../../shared/component/card-player/card-player.component';
 import { PlayersService } from '../../services/players.service';
 import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Pagination } from '../../models/pagination.model';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Player } from '../../models/player.model';
 
 @Component({
   selector: 'app-player-list',
@@ -21,7 +30,10 @@ export class PlayerListComponent implements OnInit, OnDestroy {
   pagination: Pagination = {};
   downloadCsvFile: string = '';
 
-  constructor(private readonly playerService: PlayersService) {
+  constructor(
+    private readonly playerService: PlayersService,
+    private router: Router
+  ) {
     this.playerSubscribe = new Subscription();
   }
   ngOnDestroy(): void {
@@ -116,5 +128,10 @@ export class PlayerListComponent implements OnInit, OnDestroy {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link); // Limpiar
+  }
+
+  goToPlayerDetail(player: any) {
+    //console.log('Navegando a detalles del jugador:', player);
+    this.router.navigate(['home/player-details', player.id]);
   }
 }
