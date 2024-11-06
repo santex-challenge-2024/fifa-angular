@@ -5,6 +5,7 @@ import { HomeComponent } from './features/home/home.component';
 import { PlayerListComponent } from './features/player-list/player-list.component';
 import { PlayerCreateComponent } from './features/player-create/player-create.component';
 import { authGuard } from './features/auth/guard/auth.guard';
+import { PlayerDetailsComponent } from './features/player-details/player-details.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +28,7 @@ export const routes: Routes = [
     children: [
       { path: 'player-list', component: PlayerListComponent },
       { path: 'player-create', component: PlayerCreateComponent },
+      { path: 'player-details/:id', component: PlayerDetailsComponent },
     ],
   },
 ];

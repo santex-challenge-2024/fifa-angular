@@ -14,7 +14,7 @@ export class PlayersService {
 
   private baseUrl = environments.apiUrl;
 
-  playerList(pagination?: Pagination): Observable<any> {
+  playerList(pagination?: Pagination): Observable<Player[]> {
     const page = pagination?.page || 1;
     const limit = pagination?.limit || 10;
 
@@ -29,7 +29,7 @@ export class PlayersService {
     //construccion de cadena de consulta (query)
     const queryString = new URLSearchParams(params).toString();
 
-    return this.http.get<any>(`${this.baseUrl}/players?${queryString}`, {
+    return this.http.get<Player[]>(`${this.baseUrl}/players?${queryString}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
@@ -65,8 +65,16 @@ export class PlayersService {
     );
   }
 
-  createPlayer(player: CreatePlayer): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/players/create`, player, {
+  createPlayer(player: CreatePlayer): Observable<Player> {
+    return this.http.post<Player>(`${this.baseUrl}/players/create`, player, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
+
+  getOnePlayer(playerId: string): Observable<Player> {
+    return this.http.get<Player>(`${this.baseUrl}/players/${playerId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },

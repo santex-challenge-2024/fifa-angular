@@ -1,4 +1,4 @@
-<div class="player-card">
+<div class="player-card" (click)="selectPlayer()">
   <img [src]="player.player_face_url" alt="{{ player.long_name }}" />
   <h3>{{ player.long_name }}</h3>
   <p>Edad: {{ player.age }}</p>
